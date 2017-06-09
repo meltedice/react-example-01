@@ -13,7 +13,7 @@ class Contacts extends Component {
   }
 
   render() {
-    const contacts = this.props.contacts
+    const {contacts} = this.props
     const contactsTags = contacts.map((contact) => this.renderContact(contact))
 
     return (
