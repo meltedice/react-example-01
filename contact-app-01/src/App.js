@@ -3,19 +3,8 @@ import logo from './logo.svg'
 import './App.css'
 
 class App extends Component {
-  renderContact(contact) {
-    return (
-      <tr>
-        <td>{contact.id}</td>
-        <td>{contact.name}</td>
-        <td>{contact.phone_number}</td>
-        <td>{contact.email}</td>
-      </tr>
-    )
-  }
-
-  renderContacts() {
-    const contacts = [
+  state = {
+    contacts: [
       {
         "id": 1,
         "name": "Jack",
@@ -40,7 +29,22 @@ class App extends Component {
         "phone_number": "+81 00 0000 0004",
         "email": "oogie-boogie@example.com",
       },
-    ]
+    ],
+  }
+
+  renderContact(contact) {
+    return (
+      <tr>
+        <td>{contact.id}</td>
+        <td>{contact.name}</td>
+        <td>{contact.phone_number}</td>
+        <td>{contact.email}</td>
+      </tr>
+    )
+  }
+
+  renderContacts() {
+    const contacts = this.state.contacts
     const contactsTags = contacts.map((contact) => this.renderContact(contact))
 
     return (
