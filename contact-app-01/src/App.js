@@ -3,6 +3,17 @@ import logo from './logo.svg'
 import './App.css'
 
 class App extends Component {
+  renderContact() {
+    return (
+      <tr>
+        <td>1</td>
+        <td>Jack</td>
+        <td>+81 00 0000 0001</td>
+        <td>jack@example.com</td>
+      </tr>
+    )
+  }
+
   renderContacts() {
     return (
       <table>
@@ -15,12 +26,7 @@ class App extends Component {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Jack</td>
-            <td>+81 00 0000 0001</td>
-            <td>jack@example.com</td>
-          </tr>
+          {this.renderContact()}
           <tr>
             <td>2</td>
             <td>Sarry</td>
