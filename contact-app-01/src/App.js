@@ -3,18 +3,25 @@ import logo from './logo.svg'
 import './App.css'
 
 class App extends Component {
-  renderContact() {
+  renderContact(contact) {
     return (
       <tr>
-        <td>1</td>
-        <td>Jack</td>
-        <td>+81 00 0000 0001</td>
-        <td>jack@example.com</td>
+        <td>{contact.id}</td>
+        <td>{contact.name}</td>
+        <td>{contact.phone_number}</td>
+        <td>{contact.email}</td>
       </tr>
     )
   }
 
   renderContacts() {
+    const contact = {
+      id: 1,
+      name: 'Jack',
+      phone_numger: '+81 00 0000 0001',
+      email: 'jack@example.com',
+    }
+
     return (
       <table>
         <thead>
@@ -26,7 +33,7 @@ class App extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.renderContact()}
+          {this.renderContact(contact)}
           <tr>
             <td>2</td>
             <td>Sarry</td>
