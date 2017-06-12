@@ -7,6 +7,24 @@ class App extends Component {
   state = {
     contacts: [
       {
+        "id": 0,
+        "name": "Zero",
+        "phone_number": "+81 00 0000 0000",
+        "email": "zero@example.com",
+      },
+    ],
+  }
+
+  componentWillMount() {
+    // TODO: will fetch following data from API
+    const fetchedContacts = [
+      {
+        "id": 0,
+        "name": "Zero",
+        "phone_number": "+81 00 0000 0000",
+        "email": "zero@example.com",
+      },
+      {
         "id": 1,
         "name": "Jack",
         "phone_number": "+81 00 0000 0001",
@@ -20,17 +38,13 @@ class App extends Component {
       },
       {
         "id": 3,
-        "name": "Zero",
-        "phone_number": "+81 00 0000 0000",
-        "email": "zero@example.com",
-      },
-      {
-        "id": 4,
         "name": "Oogie Boogie",
-        "phone_number": "+81 00 0000 0004",
+        "phone_number": "+81 00 0000 0003",
         "email": "oogie-boogie@example.com",
       },
-    ],
+    ]
+    
+    this.setState({contacts: fetchedContacts})
   }
 
   render() {
