@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class Contacts extends Component {
   renderContact(contact) {
     return (
-      <tr>
+      <tr key={contact.id}>
         <td>{contact.id}</td>
         <td>{contact.name}</td>
         <td>{contact.phone_number}</td>
