@@ -16,35 +16,28 @@ class App extends Component {
   }
 
   componentWillMount() {
-    // TODO: will fetch following data from API
-    const fetchedContacts = [
-      {
-        "id": 0,
-        "name": "Zero",
-        "phone_number": "+81 00 0000 0000",
-        "email": "zero@example.com",
-      },
-      {
-        "id": 1,
-        "name": "Jack",
-        "phone_number": "+81 00 0000 0001",
-        "email": "jack@example.com",
-      },
-      {
-        "id": 2,
-        "name": "Sarry",
-        "phone_number": "+81 00 0000 0002",
-        "email": "sarry@example.com",
-      },
-      {
-        "id": 3,
-        "name": "Oogie Boogie",
-        "phone_number": "+81 00 0000 0003",
-        "email": "oogie-boogie@example.com",
-      },
-    ]
-    
-    this.setState({contacts: fetchedContacts})
+    fetch(`/api/contacts.json`, {
+      accept: 'application/json',
+      method: 'GET',
+    }).then((response) => {
+      return response
+    }).then((response) => {
+      const jsonPromise = response.json()
+
+      jsonPromise.then((value) => {
+        if (value) {
+          this.setState({contacts: value})
+        }
+      }).catch((error) => {
+        console.log('json: error:')
+        console.log(error)
+      })
+
+      return response
+    }).catch((error) => {
+      console.log("fetch error:")
+      console.log(error)
+    })
   }
 
   render() {
