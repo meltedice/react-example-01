@@ -16,17 +16,50 @@ class App extends Component {
   }
 
   componentWillMount() {
+    const fetchMock = require('fetch-mock')
+
+    fetchMock.get(
+      '/api/contacts.json',
+      [
+        {
+          "id": 0,
+          "name": "Zero0",
+          "phone_number": "+81 00 0000 0000",
+          "email": "zero@example.com"
+        },
+        {
+          "id": 1,
+          "name": "Jack",
+          "phone_number": "+81 00 0000 0001",
+          "email": "jack@example.com"
+        },
+        {
+          "id": 2,
+          "name": "Sarry",
+          "phone_number": "+81 00 0000 0002",
+          "email": "sarry@example.com"
+        },
+        {
+          "id": 3,
+          "name": "Oogie Boogie",
+          "phone_number": "+81 00 0000 0003",
+          "email": "oogie-boogie@example.com"
+        }
+      ]
+    ).catch(500)
+    fetchMock.mock('*', 500)
+
     fetch(`/api/contacts.json`, {
       accept: 'application/json',
       method: 'GET',
     }).then((response) => {
       return response
     }).then((response) => {
-      const jsonPromise = response.json()
+      const promise = response.json()
 
-      jsonPromise.then((value) => {
-        if (value) {
-          this.setState({contacts: value})
+      promise.then((contacts) => {
+        if (contacts) {
+          this.setState({contacts})
         }
       }).catch((error) => {
         console.log('json: error:')
