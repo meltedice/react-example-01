@@ -1,52 +1,12 @@
 import React, { Component } from 'react'
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom'
 import logo from '../logo.svg'
 import './App.css'
 import Index from '../components/contact/Index'
-
-class New extends Component {
-  constructor(props) {
-    super(props)
-    this.addNewContact = props.addNewContact
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  handleSubmit(event) {
-    event.preventDefault()
-    const newContact = {
-      name: this.name.value, // "Mayer",
-      phone_number: this.phoneNumber.value, // "+81 00 0000 0004",
-      email: this.email.value // "mayer@example.com",
-    }
-    this.addNewContact(newContact)
-    this.props.history.push('/')
-  }
-
-  render() {
-    return (
-      <div>
-        <ul>
-          <li><Link to='/'>Contacts</Link></li>
-        </ul>
-        <form onSubmit={this.handleSubmit}>
-          <dl>
-            <dt>Name</dt>
-            <dd><input type="text" ref={input => this.name = input}/></dd>
-            <dt>Phone number</dt>
-            <dd><input type="text" ref={input => this.phoneNumber = input}/></dd>
-            <dt>Email</dt>
-            <dd><input type="text" ref={input => this.email = input}/></dd>
-          </dl>
-          <button type='submit'>Add</button>
-        </form>
-      </div>
-    )
-  }
-}
+import New from '../components/contact/New'
 
 class App extends Component {
   state = {
