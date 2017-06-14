@@ -79,10 +79,10 @@ class App extends Component {
               return <Index {...props} contacts={contacts}/>
             }} />
           <Route path="/new" render={props => {
-              return <New {...props} contacts={contacts} addNewContact={this.addNewContact}/>
+              return <New {...props} addNewContact={this.addNewContact}/>
             }}/>
           <Route path="/edit/:id" render={props => {
-              return <Edit {...props} contacts={contacts} update={this.updateContact}/>
+              return <Edit {...props} update={this.updateContact}/>
             }}/>
         </div>
       </Router>

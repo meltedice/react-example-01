@@ -8,6 +8,7 @@ class Edit extends Component {
     super(props)
     this.update = props.update
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.contact = props.location.state.contact
   }
 
   handleSubmit(event) {
@@ -24,9 +25,7 @@ class Edit extends Component {
   }
 
   render() {
-    const {contacts, match} = this.props
-    const id = parseInt(match.params.id, 10)
-    const contact = contacts.find((c, i, contracts) => c.id === id)
+    const contact = this.contact
 
     return (
       <div>

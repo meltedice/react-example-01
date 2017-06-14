@@ -11,7 +11,7 @@ class Index extends Component {
         <td>{contact.name}</td>
         <td>{contact.phone_number}</td>
         <td>{contact.email}</td>
-        <td><Link to={`/edit/${contact.id}`}>Edit</Link></td>
+        <td><Link to={{pathname: `/edit/${contact.id}`, state: {contact: contact}}}>Edit</Link></td>
       </tr>
     )
   }
