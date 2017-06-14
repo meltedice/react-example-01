@@ -7,6 +7,7 @@ import logo from '../logo.svg'
 import './App.css'
 import Index from '../components/contact/Index'
 import New from '../components/contact/New'
+import Edit from '../components/contact/Edit'
 
 class App extends Component {
   state = {
@@ -16,6 +17,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.addNewContact = this.addNewContact.bind(this)
+    this.updateContact = this.updateContact.bind(this)
   }
 
   componentWillMount() {
@@ -52,6 +54,14 @@ class App extends Component {
     this.setState({contacts: newContacts})
   }
 
+  updateContact(params) {
+    const contacts = this.state.contacts.concat()
+    const id = parseInt(params.id, 10)
+    const index = contacts.findIndex((c) => c.id === id)
+    contacts.splice(index, 1, params)
+    this.setState({contacts: contacts})
+  }
+
   render() {
     const contacts = this.state.contacts
     return (
@@ -70,6 +80,9 @@ class App extends Component {
             }} />
           <Route path="/new" render={props => {
               return <New {...props} contacts={contacts} addNewContact={this.addNewContact}/>
+            }}/>
+          <Route path="/edit/:id" render={props => {
+              return <Edit {...props} contacts={contacts} update={this.updateContact}/>
             }}/>
         </div>
       </Router>

@@ -11,6 +11,7 @@ class Index extends Component {
         <td>{contact.name}</td>
         <td>{contact.phone_number}</td>
         <td>{contact.email}</td>
+        <td><Link to={`/edit/${contact.id}`}>Edit</Link></td>
       </tr>
     )
   }
@@ -32,6 +33,7 @@ class Index extends Component {
               <th>Name</th>
               <th>Phone number</th>
               <th>Email</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
