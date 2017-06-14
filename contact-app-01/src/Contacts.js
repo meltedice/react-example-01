@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import {
+  Link
+} from 'react-router-dom'
 
 class Contacts extends Component {
   renderContact(contact) {
@@ -17,19 +20,25 @@ class Contacts extends Component {
     const contactsTags = contacts.map((contact) => this.renderContact(contact))
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Phone number</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {contactsTags}
-        </tbody>
-      </table>
+      <div>
+        <ul>
+          <li><Link to='/'>Contacts</Link></li>
+          <li><Link to='/new'>New</Link></li>
+        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Phone number</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {contactsTags}
+          </tbody>
+        </table>
+      </div>
     )
   }
 }
