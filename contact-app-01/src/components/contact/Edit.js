@@ -6,14 +6,13 @@ import {
 class Edit extends Component {
   constructor(props) {
     super(props)
-    this.update = props.update
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.update = props.update
     this.contact = props.location.state.contact
   }
 
   handleSubmit(event) {
     const params = this.props.match.params
-    event.preventDefault()
     const contact = {
       id: params.id,
       name: this.name.value,
@@ -22,6 +21,7 @@ class Edit extends Component {
     }
     this.update(contact)
     this.props.history.push('/')
+    event.preventDefault()
   }
 
   render() {

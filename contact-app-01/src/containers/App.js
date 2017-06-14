@@ -16,7 +16,7 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-    this.addNewContact = this.addNewContact.bind(this)
+    this.createContact = this.createContact.bind(this)
     this.updateContact = this.updateContact.bind(this)
   }
 
@@ -45,8 +45,9 @@ class App extends Component {
     })
   }
 
-  addNewContact(params) {
+  createContact(params) {
     const contacts = this.state.contacts.concat()
+    // TODO: call api here
     const maxId = contacts.reduce((maxId, c) => Math.max(maxId, c.id), 1)
     const newId = maxId + 1
     const newContact = Object.assign({}, params,{id: newId})
@@ -56,6 +57,7 @@ class App extends Component {
 
   updateContact(params) {
     const contacts = this.state.contacts.concat()
+    // TODO: call api here
     const id = parseInt(params.id, 10)
     const index = contacts.findIndex((c) => c.id === id)
     contacts.splice(index, 1, params)
@@ -79,7 +81,7 @@ class App extends Component {
               return <Index {...props} contacts={contacts}/>
             }} />
           <Route path="/new" render={props => {
-              return <New {...props} addNewContact={this.addNewContact}/>
+              return <New {...props} create={this.createContact}/>
             }}/>
           <Route path="/edit/:id" render={props => {
               return <Edit {...props} update={this.updateContact}/>
