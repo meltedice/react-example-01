@@ -3,7 +3,7 @@ import {
   Link
 } from 'react-router-dom'
 
-class Contacts extends Component {
+class Index extends Component {
   renderContact(contact) {
     return (
       <tr key={contact.id}>
@@ -22,7 +22,7 @@ class Contacts extends Component {
     return (
       <div>
         <ul>
-          <li><Link to='/'>Contacts</Link></li>
+          <li><Link to='/'>Index</Link></li>
           <li><Link to='/new'>New</Link></li>
         </ul>
         <table>
@@ -43,4 +43,4 @@ class Contacts extends Component {
   }
 }
 
-export default Contacts
+export default Index

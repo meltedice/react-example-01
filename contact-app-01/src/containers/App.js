@@ -6,15 +6,7 @@ import {
 } from 'react-router-dom'
 import logo from '../logo.svg'
 import './App.css'
-import Contacts from '../Contacts'
-
-class Index extends Component {
-  render() {
-    const contacts = this.props.contacts
-
-    return <Contacts contacts={contacts}/>
-  }
-}
+import Index from '../components/contact/Index'
 
 class New extends Component {
   constructor(props) {
