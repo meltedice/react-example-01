@@ -37,9 +37,9 @@ class Edit extends Component {
             <dt>Name</dt>
             <dd><input type="text" defaultValue={contact.name} ref={input => this.name = input}/></dd>
             <dt>Phone number</dt>
-            <dd><input type="text" defaultValue={contact.phone_number} ref={input => this.phoneNumber = input}/></dd>
+            <dd><input type="tel" defaultValue={contact.phone_number} ref={input => this.phoneNumber = input}/></dd>
             <dt>Email</dt>
-            <dd><input type="text" defaultValue={contact.email} ref={input => this.email = input}/></dd>
+            <dd><input type="email" defaultValue={contact.email} ref={input => this.email = input}/></dd>
           </dl>
           <button type='submit'>Update</button>
         </form>

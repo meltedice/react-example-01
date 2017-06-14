@@ -32,9 +32,9 @@ class New extends Component {
             <dt>Name</dt>
             <dd><input type="text" ref={input => this.name = input}/></dd>
             <dt>Phone number</dt>
-            <dd><input type="text" ref={input => this.phoneNumber = input}/></dd>
+            <dd><input type="tel" ref={input => this.phoneNumber = input}/></dd>
             <dt>Email</dt>
-            <dd><input type="text" ref={input => this.email = input}/></dd>
+            <dd><input type="email" ref={input => this.email = input}/></dd>
           </dl>
           <button type='submit'>Add</button>
         </form>
