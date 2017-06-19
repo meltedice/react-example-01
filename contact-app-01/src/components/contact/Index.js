@@ -3,6 +3,13 @@ import {
   Link
 } from 'react-router-dom'
 
+class CheckAllCheckbox extends Component {
+  render() {
+    const {toggleCheckAll, checked} = this.props
+    return <input type="checkbox" onChange={toggleCheckAll} checked={checked}/>
+  }
+}
+
 class Checkbox extends Component {
   toggleCheckbox = () => {
     const {id, handleCheckboxChange} = this.props
@@ -20,12 +27,13 @@ class Checkbox extends Component {
 class Index extends Component {
   state = {
     selectedContactIds: new Set(),
+    checked: false,
   }
 
   renderTableHeader = () => {
     return (
       <tr>
-        <th><input type="checkbox" onChange={this.toggleCheckAll} /></th>
+        <th><CheckAllCheckbox toggleCheckAll={this.toggleCheckAll} checked={this.state.checked}/></th>
         <th>ID</th>
         <th>Name</th>
         <th>Phone number</th>
@@ -55,7 +63,6 @@ class Index extends Component {
   }
 
   toggleCheckAll = (element) => {
-    const {target} = element
     const {contacts} = this.props
     const {selectedContactIds} = this.state
     const numContacts = contacts.length
@@ -66,23 +73,28 @@ class Index extends Component {
       for (let contact of contacts) {
         newSelectedContactIds.add(contact.id)
       }
-      target.checked = true
+      this.setState({checked: true})
     }
     else {
-      target.checked = false
+      this.setState({checked: false})
     }
 
     this.setState({selectedContactIds: newSelectedContactIds})
   }
 
   handleCheckboxChange = (id) => {
+    const {contacts} = this.props
     const {selectedContactIds} = this.state
     
     if (selectedContactIds.has(id)) {
       selectedContactIds.delete(id)
+      this.setState({checked: false})
     }
     else {
       selectedContactIds.add(id)
+      if (selectedContactIds.size === contacts.length) {
+        this.setState({checked: true})
+      }
     }
     this.setState({selectedContactIds: selectedContactIds})
   }

@@ -14,10 +14,6 @@ class App extends Component {
     contacts: [],
   }
 
-  constructor(props) {
-    super(props)
-  }
-
   componentWillMount() {
     this.asyncLoadContacts()
   }
