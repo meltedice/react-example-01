@@ -10,16 +10,16 @@ class Checkbox extends Component {
   }
 
   render() {
-    const {id, checked} = this.props
+    const {id, selected} = this.props
     return (
-      <input key={id} type="checkbox" onChange={this.toggleCheckbox} checked={checked}/>
+      <input key={id} type="checkbox" onChange={this.toggleCheckbox} checked={selected}/>
     )
   }
 }
 
 class Index extends Component {
   state = {
-    contactCheckedStates: new Set(),
+    selectedContactIds: new Set(),
   }
 
   constructor(props) {
@@ -39,10 +39,10 @@ class Index extends Component {
     )
   }
 
-  renderContact = (contact, checked) => {
+  renderContact = (contact, selected) => {
     return (
       <tr key={contact.id}>
-        <td><Checkbox id={contact.id} handleCheckboxChange={this.handleCheckboxChange} checked={checked} /></td>
+        <td><Checkbox id={contact.id} handleCheckboxChange={this.handleCheckboxChange} selected={selected} /></td>
         <td>{contact.id}</td>
         <td>{contact.name}</td>
         <td>{contact.phone_number}</td>
@@ -54,27 +54,29 @@ class Index extends Component {
 
   createContactTBody = () => {
     const {contacts} = this.props
-    const {contactCheckedStates} = this.state
-    return contacts.map((contact) => this.renderContact(contact, contactCheckedStates.has(contact.id)))
+    const {selectedContactIds} = this.state
+    return contacts.map((contact) => this.renderContact(contact, selectedContactIds.has(contact.id)))
   }
 
   handleCheckboxChange = (id) => {
-    const {contactCheckedStates} = this.state
+    const {selectedContactIds} = this.state
     
-    if (contactCheckedStates.has(id)) {
-      contactCheckedStates.delete(id)
+    if (selectedContactIds.has(id)) {
+      selectedContactIds.delete(id)
     }
     else {
-      contactCheckedStates.add(id)
+      selectedContactIds.add(id)
     }
-    this.setState({contactCheckedStates: contactCheckedStates})
+    this.setState({selectedContactIds: selectedContactIds})
   }
 
   handleSubmit = (event) => {
-    const {contactCheckedStates} = this.state
     event.preventDefault()
-    console.log(contactCheckedStates)
-    // TODO: delete checked items
+    const {selectedContactIds} = this.state
+    console.log('Delete following contacts:')
+    console.log(selectedContactIds)
+    // TODO: call delete contacts API
+    
   }
 
   render() {
