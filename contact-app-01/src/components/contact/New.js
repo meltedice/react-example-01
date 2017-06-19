@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import {
-  Link
-} from 'react-router-dom'
 
 class New extends Component {
   constructor(props) {
@@ -24,9 +21,6 @@ class New extends Component {
   render() {
     return (
       <div>
-        <ul>
-          <li><Link to='/'>Contacts</Link></li>
-        </ul>
         <form onSubmit={this.handleSubmit}>
           <dl>
             <dt>Name</dt>

@@ -22,10 +22,6 @@ class Index extends Component {
 
     return (
       <div>
-        <ul>
-          <li><Link to='/'>Index</Link></li>
-          <li><Link to='/new'>New</Link></li>
-        </ul>
         <table>
           <thead>
             <tr>
