@@ -87,12 +87,22 @@ class Index extends Component {
     this.setState({selectedContactIds: selectedContactIds})
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault()
-    const {selectedContactIds} = this.state
+  deleteSelectedContacts = () => {
+    const {bulkDelete} = this.props
+    let {selectedContactIds} = this.state
     console.log('Delete following contacts:')
     console.log(selectedContactIds)
+
+    bulkDelete(selectedContactIds)
+
+    selectedContactIds.clear()
+    this.setState({selectedContactIds})
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
     // TODO: call delete contacts API
+    this.deleteSelectedContacts()
   }
 
   render() {

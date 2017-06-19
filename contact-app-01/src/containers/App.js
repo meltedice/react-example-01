@@ -16,11 +16,13 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-    this.createContact = this.createContact.bind(this)
-    this.updateContact = this.updateContact.bind(this)
   }
 
   componentWillMount() {
+    this.asyncLoadContacts()
+  }
+
+  asyncLoadContacts = () => {
     fetch(`/api/contacts.json`, {
       accept: 'application/json',
       method: 'GET',
@@ -45,8 +47,8 @@ class App extends Component {
     })
   }
 
-  createContact(params) {
-    const contacts = this.state.contacts.concat()
+  createContact = (params) => {
+    let contacts = this.state.contacts.concat()
     // TODO: call api here
     const maxId = contacts.reduce((maxId, c) => Math.max(maxId, c.id), 1)
     const newId = maxId + 1
@@ -55,13 +57,25 @@ class App extends Component {
     this.setState({contacts: newContacts})
   }
 
-  updateContact(params) {
-    const contacts = this.state.contacts.concat()
+  updateContact = (params) => {
+    let contacts = this.state.contacts.concat()
     // TODO: call api here
     const id = parseInt(params.id, 10)
     const index = contacts.findIndex((c) => c.id === id)
     contacts.splice(index, 1, params)
     this.setState({contacts: contacts})
+  }
+
+  deleteContacts = (ids) => {
+    let contacts = this.state.contacts.concat()
+    // TODO: call api here
+    const keep = (c) => {
+      for (let id of ids) {
+        if (id === c.id) return false
+      }
+      return true
+    }
+    this.setState({contacts: contacts.filter(keep)})
   }
 
   render() {
@@ -72,7 +86,7 @@ class App extends Component {
           <Header />
 
           <Route exact path="/" render={props => {
-              return <Index {...props} contacts={contacts}/>
+              return <Index {...props} contacts={contacts} bulkDelete={this.deleteContacts}/>
             }} />
           <Route path="/new" render={props => {
               return <New {...props} create={this.createContact}/>
