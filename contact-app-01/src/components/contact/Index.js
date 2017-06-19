@@ -22,14 +22,10 @@ class Index extends Component {
     selectedContactIds: new Set(),
   }
 
-  constructor(props) {
-    super(props)
-  }
-
   renderTableHeader = () => {
     return (
       <tr>
-        <th>{/* <input type="checkbox" />FIXME */}</th>
+        <th><input type="checkbox" onChange={this.toggleCheckAll} /></th>
         <th>ID</th>
         <th>Name</th>
         <th>Phone number</th>
@@ -58,6 +54,27 @@ class Index extends Component {
     return contacts.map((contact) => this.renderContact(contact, selectedContactIds.has(contact.id)))
   }
 
+  toggleCheckAll = (element) => {
+    const {target} = element
+    const {contacts} = this.props
+    const {selectedContactIds} = this.state
+    const numContacts = contacts.length
+    const numSelectedContacts = selectedContactIds.size
+    let newSelectedContactIds = new Set()
+
+    if (numSelectedContacts !== numContacts) {
+      for (let contact of contacts) {
+        newSelectedContactIds.add(contact.id)
+      }
+      target.checked = true
+    }
+    else {
+      target.checked = false
+    }
+
+    this.setState({selectedContactIds: newSelectedContactIds})
+  }
+
   handleCheckboxChange = (id) => {
     const {selectedContactIds} = this.state
     
@@ -76,7 +93,6 @@ class Index extends Component {
     console.log('Delete following contacts:')
     console.log(selectedContactIds)
     // TODO: call delete contacts API
-    
   }
 
   render() {
