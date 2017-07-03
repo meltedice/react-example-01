@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {
   Link
 } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
 class CheckAllCheckbox extends Component {
   render() {
@@ -34,12 +35,12 @@ class Index extends Component {
   renderTableHeader = () => {
     return (
       <tr>
-        <th><CheckAllCheckbox toggleCheckAll={this.toggleCheckAll} checked={this.state.checked}/></th>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Phone number</th>
-        <th>Email</th>
-        <th>Actions</th>
+        <th className="text-center"><CheckAllCheckbox toggleCheckAll={this.toggleCheckAll} checked={this.state.checked}/></th>
+        <th className="text-left">ID</th>
+        <th className="text-left">Name</th>
+        <th className="text-left">Phone number</th>
+        <th className="text-left">Email</th>
+        <th className="text-left">Actions</th>
       </tr>
     )
   }
@@ -47,12 +48,16 @@ class Index extends Component {
   renderContact = (contact, selected) => {
     return (
       <tr key={contact.id}>
-        <td><Checkbox id={contact.id} handleCheckboxChange={this.handleCheckboxChange} selected={selected} /></td>
-        <td>{contact.id}</td>
-        <td>{contact.name}</td>
-        <td>{contact.phone_number}</td>
-        <td>{contact.email}</td>
-        <td><Link to={{pathname: `/edit/${contact.id}`, state: {contact: contact}}}>Edit</Link></td>
+        <td className="text-center"><Checkbox id={contact.id} handleCheckboxChange={this.handleCheckboxChange} selected={selected} /></td>
+        <td className="text-right">{contact.id}</td>
+        <td className="text-left">{contact.name}</td>
+        <td className="text-left">{contact.phone_number}</td>
+        <td className="text-left">{contact.email}</td>
+        <td className="text-center">
+          <LinkContainer to={{pathname: `/edit/${contact.id}`, state: {contact: contact}}}>
+            <Button bsStyle='primary'>Edit</Button>
+          </LinkContainer>
+        </td>
       </tr>
     )
   }
@@ -122,15 +127,15 @@ class Index extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <table>
+          <Table striped bordered responsive>
             <thead>
               {this.renderTableHeader()}
             </thead>
             <tbody>
               {this.createContactTBody()}
             </tbody>
-          </table>
-          <Button type='submit'>Delete</Button>
+          </Table>
+          <Button bsStyle="danger" type='submit'>Delete</Button>
         </form>
       </div>
     )
