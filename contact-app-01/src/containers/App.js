@@ -80,16 +80,19 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
-
-          <Route exact path="/" render={props => {
-              return <Index {...props} contacts={contacts} bulkDelete={this.deleteContacts}/>
-            }} />
-          <Route path="/new" render={props => {
-              return <New {...props} create={this.createContact}/>
-            }}/>
-          <Route path="/edit/:id" render={props => {
-              return <Edit {...props} update={this.updateContact}/>
-            }}/>
+          <div className="starter-template">
+            <div className="container">
+              <Route exact path="/" render={props => {
+                return <Index {...props} contacts={contacts} bulkDelete={this.deleteContacts}/>
+              }} />
+              <Route path="/new" render={props => {
+                return <New {...props} create={this.createContact}/>
+              }}/>
+              <Route path="/edit/:id" render={props => {
+                return <Edit {...props} update={this.updateContact}/>
+              }}/>
+            </div>
+          </div>
         </div>
       </Router>
     )

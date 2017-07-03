@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {
   Link
 } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 class CheckAllCheckbox extends Component {
   render() {
@@ -129,7 +130,7 @@ class Index extends Component {
               {this.createContactTBody()}
             </tbody>
           </table>
-          <button type='submit'>Delete</button>
+          <Button type='submit'>Delete</Button>
         </form>
       </div>
     )
