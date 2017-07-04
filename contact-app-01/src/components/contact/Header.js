@@ -12,13 +12,13 @@ class Header extends Component {
       <Navbar inverse fixedTop>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link exact to="/">React Contacts</Link>
+            <Link to="/">React Contacts</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <LinkContainer exact to='/'><NavItem eventKey={1}>Index</NavItem></LinkContainer>
+            <LinkContainer to='/'><NavItem eventKey={1}>Index</NavItem></LinkContainer>
             <LinkContainer to='/new'><NavItem eventKey={2}>New</NavItem></LinkContainer>
           </Nav>
         </Navbar.Collapse>
