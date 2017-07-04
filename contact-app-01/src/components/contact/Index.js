@@ -55,7 +55,7 @@ class Index extends Component {
         <td className="text-left" style={{verticalAlign: "middle"}}>{contact.email}</td>
         <td className="text-center">
           <LinkContainer to={{pathname: `/edit/${contact.id}`, state: {contact: contact}}}>
-            <Button bsStyle='primary'>Edit</Button>
+            <Button bsStyle='primary' bsSize='small'>Edit</Button>
           </LinkContainer>
         </td>
       </tr>
