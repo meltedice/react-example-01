@@ -48,11 +48,11 @@ class Index extends Component {
   renderContact = (contact, selected) => {
     return (
       <tr key={contact.id}>
-        <td className="text-center"><Checkbox id={contact.id} handleCheckboxChange={this.handleCheckboxChange} selected={selected} /></td>
-        <td className="text-right">{contact.id}</td>
-        <td className="text-left">{contact.name}</td>
-        <td className="text-left">{contact.phone_number}</td>
-        <td className="text-left">{contact.email}</td>
+        <td className="text-center" style={{verticalAlign: "middle"}}><Checkbox id={contact.id} handleCheckboxChange={this.handleCheckboxChange} selected={selected} /></td>
+        <td className="text-right" style={{verticalAlign: "middle"}}>{contact.id}</td>
+        <td className="text-left" style={{verticalAlign: "middle"}}>{contact.name}</td>
+        <td className="text-left" style={{verticalAlign: "middle"}}>{contact.phone_number}</td>
+        <td className="text-left" style={{verticalAlign: "middle"}}>{contact.email}</td>
         <td className="text-center">
           <LinkContainer to={{pathname: `/edit/${contact.id}`, state: {contact: contact}}}>
             <Button bsStyle='primary'>Edit</Button>
