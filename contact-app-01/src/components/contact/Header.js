@@ -4,7 +4,6 @@ import {
 } from 'react-router-dom'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import logo from '../../logo.svg'
 
 class Header extends Component {
   render() {
