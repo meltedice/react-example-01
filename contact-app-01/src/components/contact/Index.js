@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {
   Link
 } from 'react-router-dom'
-import { Button, Table } from 'react-bootstrap'
+import { Button, Table, Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
 class CheckAllCheckbox extends Component {
@@ -34,31 +34,35 @@ class Index extends Component {
 
   renderTableHeader = () => {
     return (
-      <tr>
-        <th className="text-center"><CheckAllCheckbox toggleCheckAll={this.toggleCheckAll} checked={this.state.checked}/></th>
-        <th className="text-left">ID</th>
-        <th className="text-left">Name</th>
-        <th className="text-left">Phone number</th>
-        <th className="text-left">Email</th>
-        <th className="text-left">Actions</th>
-      </tr>
+      <ListGroupItem>
+        <Row>
+          <Col md={1} className="text-right"><CheckAllCheckbox toggleCheckAll={this.toggleCheckAll} checked={this.state.checked}/></Col>
+          <Col md={1} className="text-left">ID</Col>
+          <Col md={2} className="text-left">Name</Col>
+          <Col md={2} className="text-left">Phone number</Col>
+          <Col md={3} className="text-left">Email</Col>
+          <Col md={1} className="text-left">Actions</Col>
+        </Row>
+      </ListGroupItem>
     )
   }
 
   renderContact = (contact, selected) => {
     return (
-      <tr key={contact.id}>
-        <td className="text-center" style={{verticalAlign: "middle"}}><Checkbox id={contact.id} handleCheckboxChange={this.handleCheckboxChange} selected={selected} /></td>
-        <td className="text-right" style={{verticalAlign: "middle"}}>{contact.id}</td>
-        <td className="text-left" style={{verticalAlign: "middle"}}>{contact.name}</td>
-        <td className="text-left" style={{verticalAlign: "middle"}}>{contact.phone_number}</td>
-        <td className="text-left" style={{verticalAlign: "middle"}}>{contact.email}</td>
-        <td className="text-center">
-          <LinkContainer to={{pathname: `/edit/${contact.id}`, state: {contact: contact}}}>
-            <Button bsStyle='primary' bsSize='small'>Edit</Button>
-          </LinkContainer>
-        </td>
-      </tr>
+      <ListGroupItem key={contact.id}>
+        <Row>
+          <Col md={1} className="text-right" style={{verticalAlign: "middle"}}><Checkbox id={contact.id} handleCheckboxChange={this.handleCheckboxChange} selected={selected} /></Col>
+          <Col md={1} className="text-left" style={{verticalAlign: "middle"}}>{contact.id}</Col>
+          <Col md={2} className="text-left" style={{verticalAlign: "middle"}}>{contact.name}</Col>
+          <Col md={2} className="text-left" style={{verticalAlign: "middle"}}>{contact.phone_number}</Col>
+          <Col md={3} className="text-left" style={{verticalAlign: "middle"}}>{contact.email}</Col>
+          <Col md={1} className="text-left">
+            <LinkContainer to={{pathname: `/edit/${contact.id}`, state: {contact: contact}}}>
+              <Button bsStyle='primary' bsSize='small'>Edit</Button>
+            </LinkContainer>
+          </Col>
+        </Row>
+      </ListGroupItem>
     )
   }
 
@@ -127,14 +131,10 @@ class Index extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <Table striped bordered responsive>
-            <thead>
-              {this.renderTableHeader()}
-            </thead>
-            <tbody>
-              {this.createContactTBody()}
-            </tbody>
-          </Table>
+          <ListGroup>
+            {this.renderTableHeader()}
+            {this.createContactTBody()}
+          </ListGroup>
           <Button bsStyle="danger" type='submit'>Delete</Button>
         </form>
       </div>
