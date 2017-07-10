@@ -32,12 +32,12 @@ class Index extends Component {
   renderTableHeader = () => {
     return (
       <Row className="panel">
-        <Col md={1} className="text-right"><CheckAllCheckbox toggleCheckAll={this.toggleCheckAll} checked={this.state.checked}/></Col>
-        <Col md={1} className="text-left">ID</Col>
-        <Col md={2} className="text-left">Name</Col>
-        <Col md={2} className="text-left">Phone number</Col>
-        <Col md={3} className="text-left">Email</Col>
-        <Col md={1} className="text-left">Actions</Col>
+        <Col xs={1}  sm={1} md={1} className="text-right"><CheckAllCheckbox toggleCheckAll={this.toggleCheckAll} checked={this.state.checked}/></Col>
+        <Col xs={1}  sm={1} md={1} className="text-left">ID</Col>
+        <Col xs={10} sm={2} md={2} className="text-left">Name</Col>
+        <Col xs={6}  sm={3} md={3} xsHidden smHidden className="text-left">Phone number</Col>
+        <Col xs={6}  sm={4} md={4} xsHidden smHidden className="text-left">Email</Col>
+        <Col xs={12} sm={1} md={1} xsHidden smHidden className="text-left">Actions</Col>
       </Row>
     )
   }
@@ -45,12 +45,14 @@ class Index extends Component {
   renderContact = (contact, selected) => {
     return (
       <Row className="panel" key={contact.id}>
-        <Col md={1} className="text-right" style={{verticalAlign: "middle"}}><Checkbox id={contact.id} handleCheckboxChange={this.handleCheckboxChange} selected={selected} /></Col>
-        <Col md={1} className="text-left" style={{verticalAlign: "middle"}}>{contact.id}</Col>
-        <Col md={2} className="text-left" style={{verticalAlign: "middle"}}>{contact.name}</Col>
-        <Col md={2} className="text-left" style={{verticalAlign: "middle"}}>{contact.phone_number}</Col>
-        <Col md={3} className="text-left" style={{verticalAlign: "middle"}}>{contact.email}</Col>
-        <Col md={1} className="text-left">
+        <Col xs={1}  sm={1} md={1} className="text-right" style={{verticalAlign: "middle"}}>
+          <Checkbox id={contact.id} handleCheckboxChange={this.handleCheckboxChange} selected={selected} />
+        </Col>
+        <Col xs={10}  sm={1} md={1} className="text-left">{contact.id}</Col>
+        <Col xs={12}  sm={2} md={2} className="text-left">{contact.name}</Col>
+        <Col xs={12}  sm={3} md={3} className="text-left">{contact.phone_number}</Col>
+        <Col xs={12}  sm={4} md={4} className="text-left">{contact.email}</Col>
+        <Col xs={12}  sm={1} md={1} className="text-left">
           <LinkContainer to={{pathname: `/edit/${contact.id}`, state: {contact: contact}}}>
             <Button bsStyle='primary' bsSize='small'>Edit</Button>
           </LinkContainer>
@@ -125,6 +127,51 @@ class Index extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <Panel header={this.renderTableHeader()}>
+            {/*
+
+            <Row className="panel">
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#11ffff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#2277ff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#33ffff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#4477ff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#55ffff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#6677ff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#77ffff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#8877ff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#99ffff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#aa77ff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#bbffff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#cc77ff"}}>1</Col>
+            </Row>
+            <Row className="panel">
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#11ffff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#2277ff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#33ffff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#4477ff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#55ffff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#6677ff"}}>1</Col>
+              <Col xs={6}  sm={6} md={6} lg={6} style={{backgroundColor: "#77ffff"}}>6</Col>
+            </Row>
+            <Row className="panel">
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#11ffff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#2277ff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#33ffff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#4477ff"}}>1</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#55ffff"}}>1</Col>
+              <Col xs={6}  sm={6} md={6} lg={6} style={{backgroundColor: "#6677ff"}}>6</Col>
+              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#77ffff"}}>1</Col>
+            </Row>
+            <Row className="panel">
+              <Col xs={3}  sm={3} md={1} lg={1} style={{backgroundColor: "#11ffff"}}>3</Col>
+              <Col xs={3}  sm={3} md={1} lg={1} style={{backgroundColor: "#2277ff"}}>3</Col>
+              <Col xs={3}  sm={3} md={1} lg={1} style={{backgroundColor: "#33ffff"}}>3</Col>
+              <Col xs={3}  sm={3} md={1} lg={1} style={{backgroundColor: "#4477ff"}}>3</Col>
+
+              <Col xs={6}  sm={6} md={1} lg={1} style={{backgroundColor: "#55ffff"}}>6</Col>
+              <Col xs={6}  sm={6} md={1} lg={1} style={{backgroundColor: "#6677ff"}}>6</Col>
+            </Row>
+            */}
+
             {this.createContactTBody()}
           </Panel>
           <Button bsStyle="danger" type='submit'>Delete</Button>
