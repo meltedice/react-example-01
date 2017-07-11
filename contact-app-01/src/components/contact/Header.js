@@ -11,7 +11,7 @@ class Header extends Component {
       <Navbar inverse fixedTop>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/">React Contacts</Link>
+            <Link to='/'>React Contacts</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
