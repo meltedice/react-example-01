@@ -12,6 +12,7 @@ class CheckAllCheckbox extends Component {
     return <input type='checkbox' onChange={toggleCheckAll} checked={checked} />
   }
 }
+
 CheckAllCheckbox.propTypes = {
   toggleCheckAll: PropTypes.func,
   checked: PropTypes.bool,
@@ -30,8 +31,9 @@ class Checkbox extends Component {
     )
   }
 }
+
 Checkbox.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   handleCheckboxChange: PropTypes.func,
   selected: PropTypes.bool,
 }
@@ -139,51 +141,6 @@ class Index extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <Panel header={this.renderTableHeader()}>
-            {/*
-
-            <Row className="panel">
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#11ffff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#2277ff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#33ffff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#4477ff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#55ffff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#6677ff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#77ffff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#8877ff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#99ffff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#aa77ff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#bbffff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#cc77ff"}}>1</Col>
-            </Row>
-            <Row className="panel">
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#11ffff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#2277ff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#33ffff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#4477ff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#55ffff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#6677ff"}}>1</Col>
-              <Col xs={6}  sm={6} md={6} lg={6} style={{backgroundColor: "#77ffff"}}>6</Col>
-            </Row>
-            <Row className="panel">
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#11ffff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#2277ff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#33ffff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#4477ff"}}>1</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#55ffff"}}>1</Col>
-              <Col xs={6}  sm={6} md={6} lg={6} style={{backgroundColor: "#6677ff"}}>6</Col>
-              <Col xs={1}  sm={1} md={1} lg={1} style={{backgroundColor: "#77ffff"}}>1</Col>
-            </Row>
-            <Row className="panel">
-              <Col xs={3}  sm={3} md={1} lg={1} style={{backgroundColor: "#11ffff"}}>3</Col>
-              <Col xs={3}  sm={3} md={1} lg={1} style={{backgroundColor: "#2277ff"}}>3</Col>
-              <Col xs={3}  sm={3} md={1} lg={1} style={{backgroundColor: "#33ffff"}}>3</Col>
-              <Col xs={3}  sm={3} md={1} lg={1} style={{backgroundColor: "#4477ff"}}>3</Col>
-
-              <Col xs={6}  sm={6} md={1} lg={1} style={{backgroundColor: "#55ffff"}}>6</Col>
-              <Col xs={6}  sm={6} md={1} lg={1} style={{backgroundColor: "#6677ff"}}>6</Col>
-            </Row>
-            */}
-
             {this.createContactTBody()}
           </Panel>
           <Button bsStyle='danger' type='submit'>Delete</Button>
@@ -195,7 +152,7 @@ class Index extends Component {
 
 Index.propTypes = {
   contacts: PropTypes.array,
-  dispatch: PropTypes.object,
+  dispatch: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   // history: PropTypes.object,
 }
 
