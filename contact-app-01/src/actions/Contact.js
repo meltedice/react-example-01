@@ -5,7 +5,7 @@ import * as Contact from '../constants/Contact'
 import MockAdapter from 'axios-mock-adapter'
 const mock = new MockAdapter(axios)
 
-export function getContacts() {
+export function loadContacts() {
   return dispatch => {
     dispatch(requestContacts())
     axios.get('/api/contacts.json').then(

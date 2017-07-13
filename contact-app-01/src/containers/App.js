@@ -15,11 +15,12 @@ import Edit from '../components/contact/Edit'
 
 class App extends Component {
   componentWillMount() {
-    this.props.contactActions.getContacts()
+    this.props.contactActions.loadContacts()
   }
 
   render() {
     const contacts = this.props.contact.contacts
+    const { deleteContacts, createContact, updateContact } = this.props.contactActions
     return (
       <Router>
         <div className='App'>
@@ -27,14 +28,21 @@ class App extends Component {
           <div className='starter-template'>
             <div className='container'>
               <Route exact path='/' render={props => {
-                return <Index {...props} contacts={contacts} />
+                return <Index {...props}
+                  contacts={contacts}
+                  deleteContacts={deleteContacts}
+                />
               }} />
               <Route path='/new' render={props => {
-                return <New {...props} />
+                return <New {...props}
+                  createContact={createContact}
+                />
               }} />
-              <Route path='/edit/:id' render={props => {
-                return <Edit {...props} />
-              }} />
+              <Route path='/edit/:id'
+                render={props => <Edit {...props}
+                  updateContact={updateContact}
+                />}
+              />
             </div>
           </div>
         </div>

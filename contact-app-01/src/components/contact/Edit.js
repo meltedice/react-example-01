@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { connect } from 'react-redux'
-import { updateContact } from '../../actions/Contact'
-
 class Edit extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
-    const { dispatch, history } = this.props
+    const { updateContact, history } = this.props
     const { params } = this.props.match
     const contact = {
       id: params.id,
@@ -15,7 +12,7 @@ class Edit extends Component {
       phone_number: this.phoneNumber.value,
       email: this.email.value,
     }
-    dispatch(updateContact(contact))
+    updateContact(contact)
     history.push('/')
   }
 
@@ -46,10 +43,10 @@ class Edit extends Component {
 }
 
 Edit.propTypes = {
-  dispatch: PropTypes.func,
   history: PropTypes.object,
   location: PropTypes.object,
   match: PropTypes.object,
+  updateContact: PropTypes.func,
 }
 
-export default connect()(Edit)
+export default Edit

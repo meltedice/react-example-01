@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { connect } from 'react-redux'
-import { createContact } from '../../actions/Contact'
-
 class New extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
-    const { dispatch, history } = this.props
+    const { createContact, history } = this.props
     const newContact = {
       name: this.name.value,
       phone_number: this.phoneNumber.value,
       email: this.email.value,
     }
-    dispatch(createContact(newContact))
+    createContact(newContact)
     history.push('/')
   }
 
@@ -43,8 +40,8 @@ class New extends Component {
 }
 
 New.propTypes = {
-  dispatch: PropTypes.func,
   history: PropTypes.object,
+  createContact: PropTypes.func,
 }
 
-export default connect()(New)
+export default New

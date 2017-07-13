@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 import { Panel, Button, Row, Col } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-import { connect } from 'react-redux'
-import { deleteContacts } from '../../actions/Contact'
-
 class CheckAllCheckbox extends Component {
   render() {
     const { toggleCheckAll, checked } = this.props
@@ -44,7 +41,7 @@ class Index extends Component {
     checked: false,
   }
 
-  renderTableHeader = () => {
+  renderListHeader = () => {
     return (
       <Row className='panel'>
         <Col xs={1}  sm={1} md={1} className='text-right'>
@@ -78,7 +75,7 @@ class Index extends Component {
     )
   }
 
-  createContactTBody = () => {
+  renderListBody = () => {
     const { contacts } = this.props
     const { selectedContactIds } = this.state
     return contacts.map((contact) => this.renderContact(contact, selectedContactIds.has(contact.id)))
@@ -119,12 +116,12 @@ class Index extends Component {
   }
 
   deleteSelectedContacts = () => {
-    const { dispatch } = this.props
+    const { deleteContacts } = this.props
     let { selectedContactIds } = this.state
     console.log('Delete following contacts:')
     console.log(selectedContactIds)
 
-    dispatch(deleteContacts(selectedContactIds))
+    deleteContacts(selectedContactIds)
 
     selectedContactIds.clear()
     this.setState({ selectedContactIds })
@@ -138,10 +135,10 @@ class Index extends Component {
 
   render() {
     return (
-      <div>
+      <div className='contact-list'>
         <form onSubmit={this.handleSubmit}>
-          <Panel header={this.renderTableHeader()}>
-            {this.createContactTBody()}
+          <Panel header={this.renderListHeader()}>
+            {this.renderListBody()}
           </Panel>
           <Button bsStyle='danger' type='submit'>Delete</Button>
         </form>
@@ -152,8 +149,7 @@ class Index extends Component {
 
 Index.propTypes = {
   contacts: PropTypes.array,
-  dispatch: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-  // history: PropTypes.object,
+  deleteContacts: PropTypes.func,
 }
 
-export default connect()(Index)
+export default Index
